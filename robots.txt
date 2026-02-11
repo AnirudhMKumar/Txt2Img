@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://puter-image-gen.vercel.app/sitemap.xml

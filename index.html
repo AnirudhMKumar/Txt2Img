@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Generator — Create Stunning Art for Free | Puter.js</title>
+    <meta name="description"
+        content="Generate stunning AI images from text prompts using DALL-E 3, GPT Image, Gemini & Grok — completely free. No signup, no API keys. Powered by Puter.js.">
+    <meta name="keywords"
+        content="AI image generator, text to image, free AI art, DALL-E 3 free, GPT Image generator, Puter.js, AI art generator, text to art, image generation, AI tools">
+    <meta name="author" content="AI Image Generator">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#8B5CF6">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AI Image Generator — Create Stunning Art for Free">
+    <meta property="og:description"
+        content="Generate stunning AI images from text prompts using DALL-E 3, GPT Image, Gemini & Grok — completely free. No signup required.">
+    <meta property="og:url" content="https://puter-image-gen.vercel.app/">
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/Puter-js/examples/main/ai-image-generator/thumbnail.png">
+    <meta property="og:site_name" content="AI Image Generator">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Image Generator — Create Stunning Art for Free">
+    <meta name="twitter:description"
+        content="Generate stunning AI images from text. Free models: DALL-E 3, GPT Image, Gemini, Grok. No signup required.">
+    <meta name="twitter:image"
+        content="https://raw.githubusercontent.com/Puter-js/examples/main/ai-image-generator/thumbnail.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://puter-image-gen.vercel.app/">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "AI Image Generator",
+        "description": "Generate stunning AI images from text prompts using DALL-E 3, GPT Image, Gemini and Grok. Completely free, no signup required.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Text to Image Generation",
+            "Multiple AI Models (DALL-E 3, GPT Image, Gemini, Grok)",
+            "AI Prompt Enhancer",
+            "Image Download",
+            "Gallery History",
+            "No Signup Required"
+        ]
+    }
+    </script>
+</head>
+
+<body>
+    <div class="gradient-bg"></div>
+
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="logo" aria-label="AI Image Gen home">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <rect width="32" height="32" rx="8" fill="url(#logo-gradient)" />
+                    <path d="M10 16C10 12.6863 12.6863 10 16 10C19.3137 10 22 12.6863 22 16C22 19.3137 19.3137 22 16 22"
+                        stroke="white" stroke-width="2.5" stroke-linecap="round" />
+                    <circle cx="16" cy="16" r="3" fill="white" />
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#8B5CF6" />
+                            <stop offset="1" stop-color="#EC4899" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>AI Image Gen</span>
+            </div>
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <a href="#generator" class="nav-link active">Generator</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#about" class="nav-link">About</a>
+                <button class="theme-toggle" id="theme-toggle" title="Toggle dark/light mode" aria-label="Toggle theme">
+                    <span class="theme-icon sun">☀️</span>
+                    <span class="theme-icon moon">🌙</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Transform Your Ideas Into <span class="gradient-text">Stunning Art</span></h1>
+                <p class="hero-subtitle">Type a description and let AI create beautiful images in seconds. Powered by
+                    Puter.js — completely free.</p>
+            </div>
+        </section>
+
+        <section id="generator" class="generator-section">
+            <div class="container">
+                <div class="generator-card glass">
+                    <div class="input-group">
+                        <label for="prompt-input" class="input-label">Describe your image</label>
+                        <textarea id="prompt-input" class="prompt-input"
+                            placeholder="A serene Japanese garden with cherry blossoms, watercolor style, soft pastel colors..."
+                            rows="3" maxlength="500"></textarea>
+                        <div class="input-meta">
+                            <span class="char-count">0 / 500</span>
+                            <div class="input-actions">
+                                <button class="enhance-btn" id="enhance-btn" title="Enhance prompt with AI">
+                                    <span class="enhance-icon">✨</span>
+                                    <span class="enhance-text">Enhance</span>
+                                    <div class="enhance-loader">
+                                        <div class="spinner-small"></div>
+                                    </div>
+                                </button>
+                                <button class="clear-btn" id="clear-btn" title="Clear input">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Negative Prompt (collapsible) -->
+                    <div class="negative-prompt-section">
+                        <button class="negative-toggle" id="negative-toggle" type="button">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M7 1V13M1 7H13" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                            <span>Negative Prompt</span>
+                            <span class="toggle-hint">(what to avoid)</span>
+                        </button>
+                        <div class="negative-prompt-body" id="negative-prompt-body" style="display: none;">
+                            <textarea id="negative-input" class="negative-input"
+                                placeholder="blurry, low quality, distorted, watermark, text, ugly..." rows="2"
+                                maxlength="300"></textarea>
+                        </div>
+                    </div>
+
+
+
+                    <div class="options-row">
+                        <div class="option-group">
+                            <label class="option-label">AI Model</label>
+                            <select id="model-select" class="style-select">
+
+                                <option value="dall-e-3" data-provider="openai-image-generation">DALL·E 3 (OpenAI)
+                                </option>
+                                <option value="gpt-image-1" data-provider="openai-image-generation">GPT Image 1 (OpenAI)
+                                </option>
+                                <option value="gpt-image-1-mini" data-provider="openai-image-generation">GPT Image 1
+                                    Mini (OpenAI)</option>
+                                <option value="gpt-image-1.5" data-provider="openai-image-generation">GPT Image 1.5
+                                    (OpenAI)</option>
+                                <option value="gemini-2.5-flash-image-preview" data-provider="gemini">Gemini 2.5 Flash
+                                    (Google)</option>
+                                <option value="grok-2-image" data-provider="xai">Grok 2 Image (xAI)</option>
+                            </select>
+                        </div>
+
+                        <div class="option-group">
+                            <label class="option-label">Style (Optional)</label>
+                            <select id="style-select" class="style-select">
+                                <option value="">Default</option>
+                                <option value="photorealistic">Photorealistic</option>
+                                <option value="digital art">Digital Art</option>
+                                <option value="oil painting">Oil Painting</option>
+                                <option value="watercolor">Watercolor</option>
+                                <option value="anime">Anime</option>
+                                <option value="3d render">3D Render</option>
+                                <option value="sketch">Sketch</option>
+                                <option value="cinematic">Cinematic</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="suggestions">
+                        <span class="suggestions-label">Try:</span>
+                        <div class="suggestion-chips">
+                            <button class="chip">A futuristic city at sunset</button>
+                            <button class="chip">Cute cat astronaut in space</button>
+                            <button class="chip">Mystical forest with glowing mushrooms</button>
+                            <button class="chip">Vintage car on a coastal road</button>
+                        </div>
+                    </div>
+
+                    <button class="generate-btn" id="generate-btn">
+                        <span class="btn-text">Generate Image</span>
+                        <span class="btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10H16M10 4L16 10L10 16" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <div class="btn-loader">
+                            <div class="spinner"></div>
+                            <span class="loader-text" id="loader-text">Generating…</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="result-container" id="result-container">
+                    <div class="result-placeholder" id="placeholder">
+                        <div class="placeholder-icon">
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                <rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor"
+                                    stroke-width="2" />
+                                <circle cx="24" cy="28" r="4" stroke="currentColor" stroke-width="2" />
+                                <path d="M8 44L20 32L28 40L40 28L56 44" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <p class="placeholder-text">Your generated image will appear here</p>
+                        <p class="placeholder-hint">Press Ctrl + Enter to generate quickly</p>
+                    </div>
+
+                    <div class="result-image-wrapper" id="result-wrapper" style="display: none;">
+                        <div class="image-container">
+                            <img id="generated-image" alt="Generated AI image" loading="lazy">
+                            <div class="image-overlay">
+                                <button class="overlay-btn download-btn" id="download-btn" title="Download image">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M10 12V4M10 12L7 9M10 12L13 9M4 14H16" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                                <button class="overlay-btn copy-btn" id="copy-btn" title="Copy image to clipboard">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <rect x="6" y="6" width="10" height="10" rx="2" stroke="currentColor"
+                                            stroke-width="2" />
+                                        <path d="M14 6V5C14 3.9 13.1 3 12 3H5C3.9 3 3 3.9 3 5V12C3 13.1 3.9 14 5 14H6"
+                                            stroke="currentColor" stroke-width="2" />
+                                    </svg>
+                                </button>
+                                <button class="overlay-btn fullscreen-btn" id="fullscreen-btn" title="View fullscreen">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M4 8V4H8M12 4H16V8M16 12V16H12M8 16H4V12" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="image-info">
+                            <p class="prompt-display" id="prompt-display"></p>
+                            <div class="image-meta">
+                                <span id="model-display"></span>
+                                <span id="timestamp-display"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <h2 class="section-title">Recent Generations</h2>
+                <div class="gallery-grid" id="gallery-grid">
+                    <div class="gallery-empty">
+                        <p>No images generated yet. Create your first masterpiece above!</p>
+                    </div>
+                </div>
+                <button class="clear-history-btn" id="clear-history" style="display: none;">
+                    Clear History
+                </button>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">How It Works</h2>
+                <div class="features-grid">
+                    <div class="feature-card glass">
+                        <div class="feature-icon">✍️</div>
+                        <h3>Describe Your Vision</h3>
+                        <p>Type any description of the image you want to create. Be as detailed or as simple as you
+                            like.</p>
+                    </div>
+                    <div class="feature-card glass">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Pick a Model</h3>
+                        <p>Choose from DALL·E 3, GPT Image, Flux, Stable Diffusion, Grok and more — all free via
+                            Puter.js.</p>
+                    </div>
+                    <div class="feature-card glass">
+                        <div class="feature-icon">💾</div>
+                        <h3>Save &amp; Share</h3>
+                        <p>Download your creation or keep it in your gallery. All images are saved locally in your
+                            browser.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p>&copy; 2025 AI Image Generator. Powered by <a href="https://puter.com" target="_blank"
+                    rel="noopener noreferrer" class="footer-link">Puter.js</a></p>
+            <p class="footer-note">All images are generated using AI. No API keys required — completely free.</p>
+        </div>
+    </footer>
+
+    <div class="modal" id="image-modal" role="dialog" aria-label="Fullscreen image view" aria-modal="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close" aria-label="Close fullscreen view">&times;</button>
+            <img id="modal-image" alt="Fullscreen view of generated AI image">
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Puter.js SDK -->
+    <script src="https://js.puter.com/v2/"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
