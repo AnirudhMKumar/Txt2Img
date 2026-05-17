@@ -207,17 +207,26 @@ async function generateImage() {
         console.log(`🎨 Generating with model="${model}", provider="${provider}"`);
         console.log(`📝 Prompt: "${fullPrompt}"`);
 
-        // Append negative prompt if present
+        // Read negative prompt
         const negPrompt = negativeInput.value.trim();
-        if (negPrompt) {
-            fullPrompt += `. Avoid: ${negPrompt}`;
-        }
 
         // Build API options
         const apiOptions = { model };
         if (provider) {
             apiOptions.provider = provider;
         }
+
+        // Route negative prompt based on provider
+        if (negPrompt && provider === 'together') {
+            // Together API supports native negative_prompt parameter
+            apiOptions.negative_prompt = negPrompt;
+        } else if (negPrompt) {
+            // Fallback: append to text prompt for all other providers
+            fullPrompt += `. Avoid: ${negPrompt}`;
+        }
+
+        console.log(`🎨 Generating with model="${model}", provider="${provider}"`);
+        console.log(`📝 Prompt: "${fullPrompt}"`);
 
         // Call Puter.js txt2img
         const imgElement = await puter.ai.txt2img(fullPrompt, apiOptions);
