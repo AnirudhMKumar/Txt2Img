@@ -204,9 +204,6 @@ async function generateImage() {
         const model = modelSelect.value;
         const provider = selectedOption.dataset.provider;
 
-        console.log(`🎨 Generating with model="${model}", provider="${provider}"`);
-        console.log(`📝 Prompt: "${fullPrompt}"`);
-
         // Read negative prompt
         const negPrompt = negativeInput.value.trim();
 
