@@ -1,10 +1,14 @@
 # 🎨 AI Image Generator
 
+## Tags
+
+`puter-js` `ai-image-generator` `dall-e-3` `gemini-api` `grok` `frontend` `vanilla-javascript`
+
 A blazing-fast, completely free, browser-based AI image generator. Build stunning visuals using state-of-the-art models—no sign-ups, no subscriptions, and absolutely no API keys required. 
 
 Powered by [Puter.js](https://puter.com).
 
-**[✨ View Live Demo](https://txt2img-one.vercel.app/)**
+**[✨ View Live Demo](https://puter-image-gen.vercel.app/)**
 
 ---
 

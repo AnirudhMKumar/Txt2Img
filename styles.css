@@ -1206,6 +1206,28 @@ body {
     transform: rotate(20deg);
 }
 
+.github-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    border-radius: 100px;
+    color: var(--accent-purple);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    margin-left: 4px;
+}
+
+.github-link:hover {
+    background: rgba(139, 92, 246, 0.15);
+    border-color: var(--accent-purple);
+    transform: translateY(-1px);
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.3);
+}
+
 .theme-icon.sun {
     display: none;
 }
